@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 public class Program
 {
@@ -8,18 +9,21 @@ public class Program
         string studentName = Console.ReadLine() ?? string.Empty;
 
         Console.WriteLine(string.Format("hello {0}!", studentName));
+        string fileName = string.Format(@"C:\VSFileProgram\{0}.txt", studentName);
+
+        createTextFile(fileName, studentName);
     }
 
 
-    public void createTextFile(string fileName)
+    public static void createTextFile(string fileName, string name)
     {
         if (File.Exists(fileName))
         {
             File.Delete(fileName);
         }
-        using (FileStream fs = File.Create(fileName))
-        {
-
-        }
+        FileStream fs = File.Create(fileName);
+        byte[] title = new UTF8Encoding(true).GetBytes(name);
+        fs.Write(title, 0, title.Length);
+        fs.Close();
     }
 }
