@@ -5,12 +5,11 @@ public class Program
 {
     public static void Main(string[] args)
     {
+        string fileName = @"C:\VSFileProgram\test.txt";
         Console.WriteLine("Hello student! Insert your name: ");
         string studentName = Console.ReadLine() ?? string.Empty;
 
         Console.WriteLine(string.Format("hello {0}!", studentName));
-        string fileName = string.Format(@"C:\VSFileProgram\{0}.txt", studentName);
-
         createTextFile(fileName, studentName);
     }
 
